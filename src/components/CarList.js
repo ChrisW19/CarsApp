@@ -1,24 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeCar } from "../store";
-import { selectCarFormName, selectFilteredCars } from "../store/selector/selectCarName";
+import { selectCarFormBrand, selectFilteredCars } from "../store/selector/selectCarName";
 
 function CarList() {
     const dispatch = useDispatch();
 
     // Use memoized selectors
     const cars = useSelector(selectFilteredCars);
-    const name = useSelector(selectCarFormName);
+    const brand = useSelector(selectCarFormBrand);
 
     const handleCarDelete = (car) => {
         dispatch(removeCar(car.id));
     };
 
     const renderedCars = cars.map((car) => {
-        const bold = name && car.name.toLowerCase().includes(name.toLowerCase());
+        console.log(car)
+        const bold = brand && car.brand.toLowerCase().includes(brand.toLowerCase());
         return (
             <div key={car.id} className={`panel ${bold && 'bold'}`}>
                 <p>
-                    {car.name} - {car.cost}
+                    {car.brand} - {car.year} {car.model} - ${car.cost}
                 </p>
                 <button className="button is-danger" onClick={() => handleCarDelete(car)}>
                     Delete
