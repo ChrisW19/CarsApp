@@ -12,7 +12,9 @@ const carsSlice = createSlice({
         },
         addCar(state, action) {
             state.data.push({
-                name: action.payload.name,
+                brand: action.payload.brand,
+                year: action.payload.year,
+                model: action.payload.model,
                 cost: action.payload.cost,
                 id: nanoid(),
             });

@@ -20,6 +20,17 @@
   margin-bottom: 0px;
   width: 70px;
 }
+
+ label.labelyear {
+  margin-bottom: 0px;
+  width: 150px;
+  color: black
+}
+
+label.label {
+  color: black
+}
+
 .car-form input {
   width: 100%;
 }
@@ -28,7 +39,8 @@
 }
 
 .car-list .panel.bold {
-  font-weight: 600;
+  font-weight: 800;
+  font-style: italic;
 }
 
 .car-list .panel {
@@ -37,6 +49,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
 }
 
 .car-list p {
@@ -76,6 +89,11 @@ hr {
 .list-header .search .label {
   margin-bottom: 0px;
   margin-right: 10px;
+}
+
+#root {
+  background-color: white;
+  min-height: 100vh; /* Ensures it covers the full height of the viewport */
 }
 
 

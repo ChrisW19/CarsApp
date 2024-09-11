@@ -4,12 +4,20 @@ import { addCar } from './carsSlice';
 const formSlice = createSlice({
     name: 'form',
     initialState: {
-        name: '',
+        brand: '',
+        year: null,
+        model: '',
         cost: 0
     },
     reducers: {
-        changeName(state, action) {
-            state.name = action.payload;
+        changeBrand(state, action) {
+            state.brand = action.payload;
+        },
+        changeYear(state, action) {
+            state.year = action.payload;
+        },
+        changeModel(state, action) {
+            state.model = action.payload;
         },
         changeCost(state, action) {
             state.cost = action.payload;
@@ -18,12 +26,13 @@ const formSlice = createSlice({
     //Clear input fields
     extraReducers(builder) {
         builder.addCase(addCar, (state) => {
-            state.name = "";
+            state.brand = "";
+            state.year = null;
+            state.model = "";
             state.cost = 0;
         });
     }
-
 });
 
-export const {changeName, changeCost} = formSlice.actions;
+export const {changeBrand, changeModel, changeYear, changeCost} = formSlice.actions;
 export const formReducer = formSlice.reducer; 

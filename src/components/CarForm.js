@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {changeName, changeCost, addCar} from '../store';
+import {changeBrand, changeYear, changeModel, changeCost, addCar} from '../store';
 import { createSelector } from "@reduxjs/toolkit";
 
 
@@ -7,25 +7,28 @@ function CarForm() {
     const dispatch = useDispatch();
 
     const memoizedForm = createSelector(
-        (state) => state.form.name,
+        (state) => state.form.brand,
+        (state) => state.form.year,
+        (state) => state.form.model,
         (state) => state.form.cost,
-        (name, cost) => {
-            return { name, cost };
+        (brand, year, model, cost) => {
+            return { brand, year, model, cost };
         }
     );
 
-    const { name, cost } = useSelector(memoizedForm);
+    const { brand, year, model, cost } = useSelector(memoizedForm);
 
-/*     const {name, cost} = useSelector((state) => {
-        return {
-            name: state.form.name,
-            cost: state.form.cost
-        };
-    }, shallowEqual) */
+    const handleBrandChange = (event) => {
+        dispatch(changeBrand(event.target.value));
+    }
 
-    const handleNameChange = (event) => {
-        //event.target.value
-        dispatch(changeName(event.target.value));
+    const handleYearChange = (event) => {
+        const year = parseInt(event.target.value)  || 0;
+        dispatch(changeYear(year));
+    }
+
+    const handleModelChange = (event) => {
+        dispatch(changeModel(event.target.value));
     }
 
     const handleCostChange = (event) => {
@@ -35,7 +38,7 @@ function CarForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(addCar({name, cost}))
+        dispatch(addCar({brand, year, model, cost}))
 
     }
 
@@ -44,11 +47,28 @@ function CarForm() {
         <form onSubmit={handleSubmit}>
             <div className="field-group">
                 <div className="field">
-                    <label className="label">Name</label>
+                    <label className="label">Brand</label>
                     <input 
                         className="input is-expanded"
-                        value={name}
-                        onChange={handleNameChange} 
+                        value={brand}
+                        onChange={handleBrandChange} 
+                    />
+                </div>
+                <div className="field">
+                    <label className="labelyear">Model Year</label>
+                    <input 
+                        className="input is-expanded"
+                        value={year || ''}
+                        placeholder="Enter a 4-digit year"
+                        onChange={handleYearChange} 
+                    />
+                </div>
+                <div className="field">
+                    <label className="label">Model</label>
+                    <input 
+                        className="input is-expanded"
+                        value={model}
+                        onChange={handleModelChange} 
                     />
                 </div>
                 <div className="field">

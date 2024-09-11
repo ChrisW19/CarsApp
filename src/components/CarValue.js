@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 function CarValue() {
     const totalCost = useSelector(({cars: {data, searchTerm}}) => {
         return data.filter((car) => {
-            return car.name.toLowerCase().includes(searchTerm.toLowerCase());
+            return car.brand.toLowerCase().includes(searchTerm.toLowerCase());
         }).reduce((acc, car) => {
             return acc + car.cost
         }, 0);
