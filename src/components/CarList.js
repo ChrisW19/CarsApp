@@ -14,7 +14,6 @@ function CarList() {
     };
 
     const renderedCars = cars.map((car) => {
-        console.log(car)
         const bold = brand && car.brand.toLowerCase().includes(brand.toLowerCase());
         return (
             <div key={car.id} className={`panel ${bold && 'bold'}`}>
